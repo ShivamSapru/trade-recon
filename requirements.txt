@@ -1,0 +1,5 @@
+pandas>=2.2
+numpy>=1.26
+psycopg2-binary>=2.9
+matplotlib>=3.8
+pytest>=8.0

@@ -1,0 +1,21 @@
+services:
+  db:
+    image: postgres:16
+    container_name: trade-recon-db
+    environment:
+      POSTGRES_USER: recon
+      POSTGRES_PASSWORD: recon
+      POSTGRES_DB: recon
+    # 5433 on the host so it never clashes with a locally installed Postgres on 5432
+    ports:
+      - "5433:5432"
+    volumes:
+      - recon_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U recon -d recon"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+
+volumes:
+  recon_pgdata:
